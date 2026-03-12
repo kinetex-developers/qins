@@ -7,7 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import {
   Tooltip, TooltipContent, TooltipProvider, TooltipTrigger,
 } from "@/components/ui/tooltip";
-import QNISNavbar from "./Navbar";
 
 // ─── Quantum Particle Canvas ──────────────────────────────────────────────────
 function QuantumCanvas() {
@@ -138,9 +137,6 @@ export default function HeroSection() {
 
         {/* Particle canvas */}
         <QuantumCanvas />
-
-        {/* Navbar */}
-        <QNISNavbar />
 
         {/* Hero content */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 max-w-6xl mx-auto w-full">

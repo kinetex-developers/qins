@@ -30,7 +30,7 @@ export default function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
           ? "bg-[#03050f]/95 backdrop-blur-xl shadow-[0_1px_0_rgba(99,210,255,0.12),0_8px_32px_rgba(0,0,0,0.65)]"
-          : "bg-[#060d1f]/90 backdrop-blur-md border-b border-cyan-500/[0.08]"
+          : "bg-[#060d1f]/90 backdrop-blur-md"
       )}
     >
       {/* Top accent line */}
@@ -71,7 +71,7 @@ export default function Navbar() {
           <NavDropdown label="Information" items={dropdownLinks.Information} linkCls={linkCls} />
 
           <a href="#" className={linkCls}>Partners</a>
-          <a href="#" className={linkCls}>Gallery</a>
+          <a href="/gallery" className={linkCls}>Gallery</a>
           <a href="#" className={linkCls}>Certificate Authors</a>
           <a href="#" className={linkCls}>Contact Us</a>
         </nav>
