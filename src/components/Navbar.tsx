@@ -4,10 +4,24 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const dropdownLinks: Record<string, string[]> = {
-  Programme:   ["Keynotes", "Schedule", "Workshops", "Poster Sessions"],
-  Submission:  ["Submit Paper", "Guidelines", "Topics", "Review Process"],
-  Information: ["Venue & Travel", "Accommodation", "Visa Info", "FAQ"],
+// ─── Link map: label → href ───────────────────────────────────────────────────
+const dropdownLinks: Record<string, { label: string; href: string }[]> = {
+  Programme: [
+    { label: "Programme/Session Details", href: "/programme/sessions" },
+    { label: "Call for Paper",            href: "/programme/call-for-paper" },
+  ],
+  Submission: [
+    { label: "Submit Paper",    href: "/submission/submit" },
+    { label: "Guidelines",      href: "/submission/guidelines" },
+    { label: "Topics",          href: "/submission/topics" },
+    { label: "Review Process",  href: "/submission/review-process" },
+  ],
+  Information: [
+    { label: "Venue & Travel", href: "/information/venue" },
+    { label: "Attractions",    href: "/information/attractions" },
+    { label: "University",     href: "/information/university" },
+    { label: "FAQ",            href: "/information/faq" },
+  ],
 };
 
 export default function Navbar() {
@@ -41,7 +55,7 @@ export default function Navbar() {
           : "none",
       }}
     >
-      {/* Top accent line — steel-blue to teal, echoing the bridge palette */}
+      {/* Top accent line */}
       <div
         className="h-[2px]"
         style={{
@@ -53,7 +67,7 @@ export default function Navbar() {
       <div className="max-w-[1400px] mx-auto px-5 h-14 flex items-center justify-between gap-3">
 
         {/* ── Logo ── */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0 group">
+        <a href="/" className="flex items-center gap-2.5 shrink-0 group">
           <div className="relative w-7 h-7">
             <div
               className="absolute inset-0 rounded-full border border-[#5a90b0]/55 animate-spin group-hover:border-[#3a7090]/70 transition-colors"
@@ -77,17 +91,17 @@ export default function Navbar() {
 
         {/* ── Desktop nav ── */}
         <nav className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
-          <a href="#" className={linkCls}>Track/Topics</a>
-          <a href="/committee" className={linkCls}>Committee</a>
+          <a href="/tracks"     className={linkCls}>Track/Topics</a>
+          <a href="/committee"  className={linkCls}>Committee</a>
 
           <NavDropdown label="Programme"   items={dropdownLinks.Programme}   linkCls={linkCls} />
           <NavDropdown label="Submission"  items={dropdownLinks.Submission}  linkCls={linkCls} />
           <NavDropdown label="Information" items={dropdownLinks.Information} linkCls={linkCls} />
 
-          <a href="#" className={linkCls}>Partners</a>
-          <a href="/gallery" className={linkCls}>Gallery</a>
-          <a href="#" className={linkCls}>Certificate Authors</a>
-          <a href="#" className={linkCls}>Contact Us</a>
+          <a href="/partners"            className={linkCls}>Partners</a>
+          <a href="/gallery"             className={linkCls}>Gallery</a>
+          <a href="/certificate-authors" className={linkCls}>Certificate Authors</a>
+          <a href="/contact"             className={linkCls}>Contact Us</a>
         </nav>
 
         {/* ── Right: institution pill + CTA + mobile toggle ── */}
@@ -141,7 +155,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── Mobile drawer — frosted glass ── */}
+      {/* ── Mobile drawer ── */}
       {mobileOpen && (
         <div
           className="lg:hidden"
@@ -154,19 +168,26 @@ export default function Navbar() {
         >
           <div className="max-w-[1400px] mx-auto px-5 py-4 flex flex-col gap-0.5">
             {[
-              "Track/Topics", "Committee", "Programme", "Submission",
-              "Information", "Partners", "Gallery", "Certificate Authors", "Contact Us",
+              { label: "Track/Topics",         href: "/tracks" },
+              { label: "Committee",            href: "/committee" },
+              { label: "Programme",            href: "/programme" },
+              { label: "Submission",           href: "/submission" },
+              { label: "Information",          href: "/information" },
+              { label: "Partners",             href: "/partners" },
+              { label: "Gallery",              href: "/gallery" },
+              { label: "Certificate Authors",  href: "/certificate-authors" },
+              { label: "Contact Us",           href: "/contact" },
             ].map((item) => (
               <a
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 className="px-3 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg transition-colors duration-150"
                 style={{ color: "#2a5068" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.10)"; (e.currentTarget as HTMLElement).style.color = "#1a3e58"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent";           (e.currentTarget as HTMLElement).style.color = "#2a5068"; }}
                 onClick={() => setMobileOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
 
@@ -203,7 +224,7 @@ function NavDropdown({
   linkCls,
 }: {
   label: string;
-  items: string[];
+  items: { label: string; href: string }[];
   linkCls: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -278,16 +299,17 @@ function NavDropdown({
           }}
         >
           {items.map((item) => (
-            <button
-              key={item}
+            <a
+              key={item.label}
+              href={item.href}
               onClick={() => setOpen(false)}
-              className="w-full text-left px-3 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg transition-colors duration-150"
+              className="block w-full text-left px-3 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg transition-colors duration-150"
               style={{ color: "#2a5068" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.12)"; (e.currentTarget as HTMLElement).style.color = "#1a3e58"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent";           (e.currentTarget as HTMLElement).style.color = "#2a5068"; }}
             >
-              {item}
-            </button>
+              {item.label}
+            </a>
           ))}
         </div>
       )}
