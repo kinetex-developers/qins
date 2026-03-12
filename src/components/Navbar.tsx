@@ -78,7 +78,7 @@ export default function Navbar() {
         {/* ── Desktop nav ── */}
         <nav className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
           <a href="#" className={linkCls}>Track/Topics</a>
-          <a href="#" className={linkCls}>Committee</a>
+          <a href="/committee" className={linkCls}>Committee</a>
 
           <NavDropdown label="Programme"   items={dropdownLinks.Programme}   linkCls={linkCls} />
           <NavDropdown label="Submission"  items={dropdownLinks.Submission}  linkCls={linkCls} />
