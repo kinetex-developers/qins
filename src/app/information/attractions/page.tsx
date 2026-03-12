@@ -318,7 +318,7 @@ function AttractionCard({ item, featured = false, onOpen }: CardProps) {
           <div className={`w-1 h-1 rounded-full ${ts.dot}`} />
           <div className="h-px flex-1"
             style={{ background: "linear-gradient(to right, rgba(90,144,176,0.25), transparent)" }} />
-          <span className="text-[9px] font-mono text-[#8aa8b8] tracking-widest">TEHI 2025</span>
+          <span className="text-[9px] font-mono text-[#8aa8b8] tracking-widest">QINS 2026</span>
         </div>
       </div>
     </div>
@@ -446,7 +446,7 @@ function Lightbox({ item, onClose, onPrev, onNext, allItems, onJump }: LightboxP
                   {item.tag}
                 </Badge>
                 <Separator orientation="vertical" className="h-3 bg-[#a8c8d8]/40" />
-                <span className="text-[10px] font-mono text-[#8aa8b8] tracking-widest">TEHI 2025</span>
+                <span className="text-[10px] font-mono text-[#8aa8b8] tracking-widest">QINS 2026</span>
               </div>
               <h2 className="text-lg font-bold text-[#1e3a58] tracking-tight">{item.title}</h2>
               <p className="text-xs text-[#6a8898] leading-relaxed max-w-xl">{item.caption}</p>
@@ -633,7 +633,7 @@ export default function AttractionsPage() {
             <span>City of Joy: <span className="text-[#1e5878]">Kolkata, India</span></span>
             <span>Attractions: <span className="text-[#1e5878]">{filtered.length} Spots · {category}</span></span>
             <span>Heritage: <span className="text-[#2a4878]">ACTIVE</span></span>
-            <span>TEHI 2025 — <span className="text-[#1e5878]">READY</span></span>
+            <span>QINS 2026 — <span className="text-[#1e5878]">READY</span></span>
           </div>
         </div>
       </div>
