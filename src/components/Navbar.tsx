@@ -24,9 +24,24 @@ const dropdownLinks: Record<string, { label: string; href: string }[]> = {
   ],
 };
 
+// Flat nav items (no dropdown)
+const flatMobileLinks = [
+  { label: "Track/Topics",        href: "/tracks" },
+  { label: "Committee",           href: "/committee" },
+  { label: "Partners",            href: "/partners" },
+  { label: "Gallery",             href: "/gallery" },
+  { label: "Certificate Authors", href: "/certificate-authors" },
+  { label: "Contact Us",          href: "/contact" },
+];
+
+// Items with dropdowns
+const dropdownMobileKeys = ["Programme", "Submission", "Information"] as const;
+
 export default function Navbar() {
   const [scrolled,   setScrolled]   = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Track which mobile accordion is open
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -34,10 +49,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Slightly tighter padding + smaller text at xl to fit all items
+  // Close accordion when mobile menu closes
+  useEffect(() => {
+    if (!mobileOpen) setOpenAccordion(null);
+  }, [mobileOpen]);
+
   const linkCls =
     "px-2 py-1.5 text-[10.5px] xl:text-[11px] font-mono uppercase tracking-wider rounded-md transition-all duration-200 whitespace-nowrap " +
     "text-[#2a5068] hover:text-[#1a3e58] hover:bg-[#5a90b0]/10";
+
+  const toggleAccordion = (key: string) =>
+    setOpenAccordion((prev) => (prev === key ? null : key));
 
   return (
     <header
@@ -92,8 +114,8 @@ export default function Navbar() {
 
         {/* ── Desktop nav ── */}
         <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center flex-wrap">
-          <a href="/tracks"     className={linkCls}>Track/Topics</a>
-          <a href="/committee"  className={linkCls}>Committee</a>
+          <a href="/tracks"    className={linkCls}>Track/Topics</a>
+          <a href="/committee" className={linkCls}>Committee</a>
 
           <NavDropdown label="Programme"   items={dropdownLinks.Programme}   linkCls={linkCls} />
           <NavDropdown label="Submission"  items={dropdownLinks.Submission}  linkCls={linkCls} />
@@ -107,7 +129,6 @@ export default function Navbar() {
 
         {/* ── Right: CTA + mobile toggle ── */}
         <div className="flex items-center gap-2 shrink-0">
-          {/* Register CTA button */}
           <a
             href="#register"
             className="hidden md:inline-flex items-center px-3 xl:px-4 py-1.5 rounded-full text-[10.5px] xl:text-[11px] font-mono font-bold tracking-widest uppercase transition-all duration-200 whitespace-nowrap"
@@ -122,7 +143,6 @@ export default function Navbar() {
             Register
           </a>
 
-          {/* Mobile toggle */}
           <button
             aria-label="Toggle menu"
             className="lg:hidden transition-colors p-1 rounded-md hover:bg-[#5a90b0]/10"
@@ -146,30 +166,30 @@ export default function Navbar() {
           }}
         >
           <div className="max-w-[1400px] mx-auto px-5 py-4 flex flex-col gap-0.5">
-            {[
-              { label: "Track/Topics",         href: "/tracks" },
-              { label: "Committee",            href: "/committee" },
-              { label: "Programme",            href: "/programme" },
-              { label: "Submission",           href: "/submission" },
-              { label: "Information",          href: "/information" },
-              { label: "Partners",             href: "/partners" },
-              { label: "Gallery",              href: "/gallery" },
-              { label: "Certificate Authors",  href: "/certificate-authors" },
-              { label: "Contact Us",           href: "/contact" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="px-3 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg transition-colors duration-150"
-                style={{ color: "#2a5068" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.10)"; (e.currentTarget as HTMLElement).style.color = "#1a3e58"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent";           (e.currentTarget as HTMLElement).style.color = "#2a5068"; }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </a>
+
+            {/* Track/Topics & Committee (flat) */}
+            {flatMobileLinks.slice(0, 2).map((item) => (
+              <MobileFlatLink key={item.label} item={item} onClose={() => setMobileOpen(false)} />
             ))}
 
+            {/* Accordion dropdowns: Programme, Submission, Information */}
+            {dropdownMobileKeys.map((key) => (
+              <MobileAccordion
+                key={key}
+                label={key}
+                items={dropdownLinks[key]}
+                isOpen={openAccordion === key}
+                onToggle={() => toggleAccordion(key)}
+                onClose={() => setMobileOpen(false)}
+              />
+            ))}
+
+            {/* Remaining flat links */}
+            {flatMobileLinks.slice(2).map((item) => (
+              <MobileFlatLink key={item.label} item={item} onClose={() => setMobileOpen(false)} />
+            ))}
+
+            {/* Register CTA */}
             <div className="pt-2 mt-1" style={{ borderTop: "1px solid rgba(90,144,176,0.14)" }}>
               <a
                 href="#register"
@@ -196,7 +216,89 @@ export default function Navbar() {
   );
 }
 
-// ─── Frosted dropdown panel ───────────────────────────────────────────────────
+// ─── Mobile flat link ─────────────────────────────────────────────────────────
+function MobileFlatLink({
+  item,
+  onClose,
+}: {
+  item: { label: string; href: string };
+  onClose: () => void;
+}) {
+  return (
+    <a
+      href={item.href}
+      className="px-3 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg transition-colors duration-150"
+      style={{ color: "#2a5068" }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.10)"; (e.currentTarget as HTMLElement).style.color = "#1a3e58"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent";           (e.currentTarget as HTMLElement).style.color = "#2a5068"; }}
+      onClick={onClose}
+    >
+      {item.label}
+    </a>
+  );
+}
+
+// ─── Mobile accordion item ────────────────────────────────────────────────────
+function MobileAccordion({
+  label,
+  items,
+  isOpen,
+  onToggle,
+  onClose,
+}: {
+  label: string;
+  items: { label: string; href: string }[];
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+}) {
+  return (
+    <div className="rounded-lg overflow-hidden" style={{ background: isOpen ? "rgba(90,144,176,0.07)" : "transparent" }}>
+      {/* Accordion trigger */}
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between px-3 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg transition-colors duration-150"
+        style={{ color: isOpen ? "#1a3e58" : "#2a5068" }}
+      >
+        <span>{label}</span>
+        <ChevronDown
+          className="w-3.5 h-3.5 opacity-50 transition-transform duration-200"
+          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
+      </button>
+
+      {/* Sub-items — animate open/close */}
+      <div
+        style={{
+          maxHeight: isOpen ? `${items.length * 44}px` : "0px",
+          overflow: "hidden",
+          transition: "max-height 0.25s ease",
+        }}
+      >
+        <div className="pb-1.5 flex flex-col gap-0.5">
+          {items.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="mx-2 px-3 py-1.5 text-[10.5px] font-mono uppercase tracking-wider rounded-md transition-colors duration-150"
+              style={{
+                color: "#3a6880",
+                borderLeft: "2px solid rgba(90,144,176,0.30)",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.12)"; (e.currentTarget as HTMLElement).style.color = "#1a3e58"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent";           (e.currentTarget as HTMLElement).style.color = "#3a6880"; }}
+              onClick={onClose}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Frosted dropdown panel (desktop) ────────────────────────────────────────
 function NavDropdown({
   label,
   items,
