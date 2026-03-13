@@ -34,8 +34,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Slightly tighter padding + smaller text at xl to fit all items
   const linkCls =
-    "px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider rounded-md transition-all duration-200 " +
+    "px-2 py-1.5 text-[10.5px] xl:text-[11px] font-mono uppercase tracking-wider rounded-md transition-all duration-200 whitespace-nowrap " +
     "text-[#2a5068] hover:text-[#1a3e58] hover:bg-[#5a90b0]/10";
 
   return (
@@ -64,10 +65,10 @@ export default function Navbar() {
         }}
       />
 
-      <div className="max-w-[1400px] mx-auto px-5 h-14 flex items-center justify-between gap-3">
+      <div className="max-w-[1400px] mx-auto px-4 xl:px-5 h-14 flex items-center justify-between gap-2">
 
         {/* ── Logo ── */}
-        <a href="/" className="flex items-center gap-2.5 shrink-0 group">
+        <a href="/" className="flex items-center gap-2 shrink-0 group">
           <div className="relative w-7 h-7">
             <div
               className="absolute inset-0 rounded-full border border-[#5a90b0]/55 animate-spin group-hover:border-[#3a7090]/70 transition-colors"
@@ -90,7 +91,7 @@ export default function Navbar() {
         </a>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+        <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center flex-wrap">
           <a href="/tracks"     className={linkCls}>Track/Topics</a>
           <a href="/committee"  className={linkCls}>Committee</a>
 
@@ -104,34 +105,12 @@ export default function Navbar() {
           <a href="/contact"             className={linkCls}>Contact Us</a>
         </nav>
 
-        {/* ── Right: institution pill + CTA + mobile toggle ── */}
-        <div className="flex items-center gap-3 shrink-0">
-          {/* SamSU pill */}
-          <div
-            className="hidden xl:flex items-center gap-2 rounded-lg px-3 py-1.5 cursor-pointer select-none transition-all duration-200"
-            style={{
-              background: "rgba(90,144,176,0.10)",
-              border: "1px solid rgba(90,144,176,0.20)",
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.18)"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(90,144,176,0.10)"; }}
-          >
-            <div
-              className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
-              style={{ background: "rgba(90,144,176,0.20)" }}
-            >
-              <div className="w-3 h-3 rounded-full border border-[#5a90b0]/60" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-[9px] font-bold tracking-wide"  style={{ color: "#1e4860" }}>Samarkand State</span>
-              <span className="text-[8px] tracking-wide"            style={{ color: "#4a8098" }}>University · SamSU</span>
-            </div>
-          </div>
-
+        {/* ── Right: CTA + mobile toggle ── */}
+        <div className="flex items-center gap-2 shrink-0">
           {/* Register CTA button */}
           <a
             href="#register"
-            className="hidden md:inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-widest uppercase transition-all duration-200"
+            className="hidden md:inline-flex items-center px-3 xl:px-4 py-1.5 rounded-full text-[10.5px] xl:text-[11px] font-mono font-bold tracking-widest uppercase transition-all duration-200 whitespace-nowrap"
             style={{
               background: "linear-gradient(135deg, #1e5878, #2a7868)",
               color: "#eef6f8",
