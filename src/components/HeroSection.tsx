@@ -318,7 +318,7 @@ export default function HeroSection() {
             <span className="text-[#2a4e78] font-semibold">Post-Classical Intelligence</span>
           </p>
           <p className="text-[#7aA0b0] text-xs sm:text-sm max-w-xl mb-8 sm:mb-10 leading-relaxed px-2">
-            Organized by SamSU · In association with IIOIR, Shimla &amp; ACCBI, Amity University Rajasthan
+            Organized by SamSU · In association with IIOIR, Shimla &amp; ACCBI, Swami Vivekananda University
           </p>
 
           {/* Separator */}
