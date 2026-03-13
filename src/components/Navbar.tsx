@@ -81,7 +81,7 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col leading-none select-none">
             <span className="font-black tracking-[0.18em] text-sm font-mono" style={{ color: "#1e4860" }}>
-              qins<span style={{ color: "#5a90b0" }}>·</span>2025
+              qins<span style={{ color: "#5a90b0" }}>·</span>2026
             </span>
             <span className="hidden sm:block text-[8px] tracking-[0.25em] uppercase font-mono" style={{ color: "#7aaac0" }}>
               Quantum Conference
