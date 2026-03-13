@@ -452,7 +452,7 @@ export default function UniversityPage() {
         {/* ══ SCROLLABLE CONTENT — offset clears the fixed image panel ══ */}
         <div className="svu-content relative z-10">
 
-          <header className="pt-8 sm:pt-14 pb-6 sm:pb-10 px-4 sm:px-6 md:px-10 text-left">
+          <header className="pt-8 mt-2.5 sm:pt-14 pb-6 sm:pb-10 px-4 sm:px-6 md:px-10 text-left">
             <div className="mb-4">
               <span
                 className="text-[#4a7890]/65 text-sm"

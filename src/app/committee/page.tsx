@@ -415,7 +415,7 @@ export default function CommitteePage() {
         <div className="mb-5">
           <span className="text-[#4a7890]/65 text-sm"
             style={{ fontFamily: "'Georgia', serif", fontStyle: "italic", letterSpacing: "0.05em" }}>
-            Tashkent, Uzbekistan · 2025
+           Kolkata, West Bengal · 2026
           </span>
         </div>
 

@@ -256,20 +256,20 @@ export default function HeroSection() {
               className="text-[#4a7890]/65 text-xs sm:text-sm"
               style={{ fontFamily: "'Georgia', 'Times New Roman', serif", fontStyle: "italic", letterSpacing: "0.05em" }}
             >
-              Tashkent, Uzbekistan · 2025
+              Kolkata, West Bengal · 2025
             </span>
           </div>
 
           {/* Badges */}
           <div className="mb-6 sm:mb-8 flex items-center gap-2 flex-wrap justify-center">
             <Badge className="bg-[#5a90b0]/10 border border-[#5a90b0]/28 text-[#1e5878] font-mono text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-none hover:bg-[#5a90b0]/15 transition-colors">
-              5th Edition
+              1st Edition
             </Badge>
             <Badge className="bg-[#5aa898]/10 border border-[#5aa898]/28 text-[#1e5848] font-mono text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-none hover:bg-[#5aa898]/15 transition-colors">
               Hybrid Mode
             </Badge>
             <Badge className="bg-[#b89858]/10 border border-[#b89858]/28 text-[#6a5018] font-mono text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-none">
-              7–8 Nov 2025
+              20–21 Dec 2026
             </Badge>
           </div>
 

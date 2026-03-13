@@ -51,40 +51,40 @@ type Category = "All" | "Campus" | "Events" | "Academic" | "Students";
 const GALLERY: GalleryItem[] = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1562774053-701939374585?w=1200&q=85",
-    thumb: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=70",
+    src: "/victoria-memorial.jpg",
+    thumb: "/victoria-memorial.jpg",
     title: "Vivekananda College — Main Building",
     caption: "The iconic main facade of Vivekananda College on Thakurpukur Road, Kolkata — a landmark of higher education in West Bengal since 1946.",
     tag: "Campus", tagColor: "teal", category: "Campus", index: "01",
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=85",
-    thumb: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=70",
+    src: "/howrah-bridge2.jpg",
+    thumb: "/howrah-bridge2.jpg",
     title: "Annual Convocation Ceremony",
     caption: "Graduates of the 2024 batch receiving their degrees at the annual convocation held in the college auditorium, Kolkata.",
     tag: "Events", tagColor: "steel", category: "Events", index: "02",
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85",
-    thumb: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=70",
+    src: "/indian-museum.jpg",
+    thumb: "/indian-museum.jpg",
     title: "College Library & Reading Hall",
     caption: "The well-stocked college library supporting thousands of undergraduate and postgraduate students across all departments.",
     tag: "Academic", tagColor: "sky", category: "Academic", index: "03",
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=85",
-    thumb: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=70",
+    src: "/dakshineswar-kali-temple.jpg",
+    thumb: "/dakshineswar-kali-temple.jpg",
     title: "QNIS 2025 Seminar Hall",
     caption: "Delegates and faculty gathered in the seminar hall for the opening keynote of QNIS 2025, hosted by Vivekananda College.",
     tag: "Events", tagColor: "slate", category: "Events", index: "04",
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=85",
-    thumb: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=70",
+    src: "/st-pauls-cathedral.jpg",
+    thumb: "/st-pauls-cathedral.jpg",
     title: "Student Research Presentations",
     caption: "Undergraduate and postgraduate students presenting their research posters during the QNIS 2025 inter-college session.",
     tag: "Students", tagColor: "sand", category: "Students", index: "05",
@@ -390,7 +390,7 @@ function Lightbox({ item, onClose, onPrev, onNext, allItems, onJump }: LightboxP
             <span className="text-[10px] font-mono text-[#5a90b0]/70 tracking-widest">
               {item.index} / {String(allItems.length).padStart(2, "0")}
             </span>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button size="icon" variant="ghost"
@@ -420,7 +420,7 @@ function Lightbox({ item, onClose, onPrev, onNext, allItems, onJump }: LightboxP
                 onClick={onClose}>
                 <X className="w-3.5 h-3.5" />
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Prev / Next */}
@@ -536,7 +536,7 @@ export default function GalleryPage() {
           <div className="mb-5">
             <span className="text-[#4a7890]/65 text-sm"
               style={{ fontFamily: "'Georgia', serif", fontStyle: "italic", letterSpacing: "0.05em" }}>
-              Tashkent, Uzbekistan · 2025
+              Kolkata, West Bengal · 2026
             </span>
           </div>
 
