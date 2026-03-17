@@ -256,7 +256,7 @@ export default function HeroSection() {
               className="text-[#4a7890]/65 text-xs sm:text-sm"
               style={{ fontFamily: "'Georgia', 'Times New Roman', serif", fontStyle: "italic", letterSpacing: "0.05em" }}
             >
-              Kolkata, West Bengal · 2025
+              Kolkata, West Bengal · 2026
             </span>
           </div>
 
@@ -313,12 +313,12 @@ export default function HeroSection() {
           {/* Subtitle */}
           <p className="max-w-2xl text-[#2a4458] text-sm sm:text-base md:text-lg leading-relaxed mb-2 px-2">
             The International Conference on{" "}
-            <span className="text-[#1a5878] font-semibold">Quantum Computing</span>,{" "}
-            <span className="text-[#1e6848] font-semibold">Entangled Networks</span> &{" "}
-            <span className="text-[#2a4e78] font-semibold">Post-Classical Intelligence</span>
+            <span className="text-[#1a5878] font-semibold">Quantum Intelligence</span>,{" "}
+            <span className="text-[#1e6848] font-semibold">Networks</span> &{" "}
+            <span className="text-[#2a4e78] font-semibold">Secure Systems</span>
           </p>
           <p className="text-[#7aA0b0] text-xs sm:text-sm max-w-xl mb-8 sm:mb-10 leading-relaxed px-2">
-            Organized by SamSU · In association with IIOIR, Shimla &amp; ACCBI, Swami Vivekananda University
+            Organized by Swami Vivekananda University
           </p>
 
           {/* Separator */}
@@ -395,7 +395,7 @@ export default function HeroSection() {
                 <Button
                   size="lg"
                   variant="ghost"
-                  onClick={() => { navigator.clipboard.writeText("qins2025.quantum/submit"); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+                  onClick={() => { navigator.clipboard.writeText("qins2026.quantum/submit"); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
                   className="font-mono text-xs tracking-widest rounded-full transition-all w-full sm:w-auto"
                   style={{
                     border: "1px solid rgba(80,140,168,0.22)",
